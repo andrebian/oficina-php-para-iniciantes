@@ -12,7 +12,8 @@
             
             echo '<a href="'.$postModel->obterLink().'"><strong>'.$post['titulo'].'</strong></a>';
             echo '<br />';
-            echo 'Postado em: ' . date('d/m/Y', strtotime($post['criado'])); 
+            echo 'Postado em: ' . date('d/m/Y', strtotime($post['criado'])) . ' ';
+            echo 'às ' . date('H:i:s', strtotime($post['criado'])); 
             echo '<br />';  
             echo $postModel->resumo($post['conteudo'], 40);
             echo '<br /><br /><hr>';

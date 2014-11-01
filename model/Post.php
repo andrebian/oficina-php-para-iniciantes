@@ -38,7 +38,7 @@ class Post
         
         $posts = array();
         
-        $res = mysql_query("SELECT * FROM posts");
+        $res = mysql_query("SELECT * FROM posts ORDER By criado DESC");
         
         if( mysql_affected_rows() && !mysql_error() ) {
             while($fila = mysql_fetch_assoc($res)) {
