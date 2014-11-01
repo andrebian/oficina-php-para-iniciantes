@@ -7,10 +7,18 @@ class Post
     
     private $id = 0;
     
-    public function salva($titulo, $conteudo, $id = 0)
+    public function __construct() 
     {
         abreConexao();
-        
+    }
+    
+    public function __destruct() 
+    {
+        fechaConexao();
+    }
+    
+    public function salva($titulo, $conteudo, $id = 0)
+    {
         $registroSalvo = false;
         $criado = date('Y-m-d H:i:s');
         $atualizado = $criado;
@@ -28,14 +36,11 @@ class Post
             $registroSalvo = true;
         }
         
-        fechaConexao();
         return $registroSalvo;
     }
     
     public function listarPosts()
-    {
-        abreConexao();
-        
+    {        
         $posts = array();
         
         $res = mysql_query("SELECT * FROM posts ORDER By criado DESC");
@@ -45,7 +50,6 @@ class Post
                 $posts[] = $fila;
             }
         }
-        fechaConexao();
         
         return $posts;
     }
@@ -91,8 +95,6 @@ class Post
         
         if( $this->id > 0 ) {
             
-            abreConexao();
-            
             $res = mysql_query("SELECT * FROM posts WHERE id=" . $this->id);
             
             if( mysql_affected_rows() && !mysql_error()) {
@@ -100,8 +102,6 @@ class Post
                     $detalhesDoPost = $detalhes;
                 }
             }
-            
-            fechaConexao();
         }
         
         return $detalhesDoPost;
@@ -112,13 +112,11 @@ class Post
         $removido = false;
         
         if( $this->id > 0 ) {
-            abreConexao();
             
             mysql_query("DELETE FROM posts WHERE id=" . $this->id);
             if( mysql_affected_rows() && !mysql_error() ) {
                 $removido = true;
             }
-            fechaConexao();
         }
         
         return $removido;
