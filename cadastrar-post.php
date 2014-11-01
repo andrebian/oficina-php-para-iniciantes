@@ -3,7 +3,7 @@
 
 <?php
 
-    if( isset($_POST) ) {
+    if( isset($_POST['titulo']) ) {
         $titulo = filter_input(INPUT_POST, 'titulo', FILTER_SANITIZE_STRING);
         $conteudo = filter_input(INPUT_POST, 'conteudo', FILTER_SANITIZE_STRING);
         
