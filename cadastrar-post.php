@@ -1,6 +1,15 @@
 <?php include './templates/cabecalho.php'; ?>
 <?php include './templates/menu.php'; ?>
 
+<?php
+
+    if( isset($_POST) ) {
+        $titulo = filter_input(INPUT_POST, 'titulo', FILTER_SANITIZE_STRING);
+        $conteudo = filter_input(INPUT_POST, 'conteudo', FILTER_SANITIZE_STRING);
+    }
+
+?>
+
 Informe os dados para o novo post
 <br /><br />
 
