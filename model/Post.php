@@ -76,4 +76,27 @@ class Post
         $this->id = $id;
         return $this;
     }
+    
+    public function detalhes()
+    {
+        $detalhesDoPost = array();
+        
+        if( $this->id > 0 ) {
+            
+            abreConexao();
+            
+            $res = mysql_query("SELECT * FROM posts WHERE id=" . $this->id);
+            
+            if( mysql_affected_rows() && !mysql_error()) {
+                while($detalhes = mysql_fetch_assoc($res)) {
+                    $detalhesDoPost = $detalhes;
+                }
+            }
+            
+            fechaConexao();
+        }
+        
+        return $detalhesDoPost;
+    }
+    
 }
