@@ -8,6 +8,7 @@ class Post
     {
         abreConexao();
         
+        $registroSalvo = false;
         $criado = date('Y-m-d H:i:s');
         $atualizado = $criado;
         
@@ -21,9 +22,10 @@ class Post
         
         mysql_query($sql);
         if( mysql_affected_rows() && !mysql_error() ) {
-            return true;
+            $registroSalvo = true;
         }
         
-        return false;
+        fechaConexao();
+        return $registroSalvo;
     }
 }
