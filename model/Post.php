@@ -4,12 +4,12 @@ require dirname(__DIR__) . '/config/conexao-db.php';
 
 class Post
 {
+    
+    private $id = 0;
+    
     public function salva($titulo, $conteudo, $id = null)
     {
         abreConexao();
-        
-        $titulo = utf8_decode($titulo);
-        $conteudo = utf8_decode($conteudo);
         
         $registroSalvo = false;
         $criado = date('Y-m-d H:i:s');
@@ -30,5 +30,50 @@ class Post
         
         fechaConexao();
         return $registroSalvo;
+    }
+    
+    public function listarPosts()
+    {
+        abreConexao();
+        
+        $posts = array();
+        
+        $res = mysql_query("SELECT * FROM posts");
+        
+        if( mysql_affected_rows() && !mysql_error() ) {
+            while($fila = mysql_fetch_assoc($res)) {
+                $posts[] = $fila;
+            }
+        }
+        fechaConexao();
+        
+        return $posts;
+    }
+    
+    public function resumo($conteudo, $palavras = 30)
+    {
+        $resumo = "";
+        
+        $conteudo = explode(" ", $conteudo);
+        for($cont = 0; $cont <= $palavras; $cont++) {
+            $resumo .= $conteudo[$cont] . " ";
+        }
+        
+        if( count($conteudo) >= $palavras ) {
+            $resumo .= ' ... <a href="'.$this->obterLink().'">[continue lendo]</a>';
+        }
+        
+        return $resumo;
+    }
+    
+    public function obterLink()
+    {
+        return '/blog/detalhes-post.php?id=' . $this->id;
+    }
+    
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
     }
 }
