@@ -37,4 +37,18 @@ class Comment
         return $comentarios;
     }
     
+    public function salva($nome, $email, $comentario, $postId)
+    {
+        $data = date('Y-m-d H:i:s');
+        $sql = "INSERT INTO comentarios (post_id, nome, email, comentario, enviado) VALUES ";
+        $sql .= "({$postId}, '{$nome}', '{$email}', '{$comentario}', '{$data}')";
+        
+        mysql_query($sql);
+        
+        if( mysql_affected_rows() && !mysql_error() ) {
+            return true;
+        }
+        return false;
+    }
+    
 }

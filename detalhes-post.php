@@ -19,6 +19,29 @@
         
         $commentModel->setPostId($postId);
         $comentarios = $commentModel->obterComentarios();
+        
+        if( isset($_POST['comentario']) ) {
+            $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_STRING);
+            $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+            $comentario = filter_input(INPUT_POST, 'comentario', FILTER_SANITIZE_STRING);
+            
+            if( !empty($nome) && !empty($email) && !empty($comentario) ) {
+                if( $commentModel->salva($nome, $email, $comentario, $postId) ) { ?>
+                    <script>
+                        alert("Seu comentário foi enviado com sucesso!");
+                        window.location.href="/blog/detalhes-post.php?id=<?php echo $postId; ?>";
+                    </script>
+                <?php 
+                } else { ?>
+                    <strong style="color: #f00;">Não foi possível cadastrar seu comentário</strong>
+                <?php
+                }
+            } else { ?>
+                <strong style="color: #f00;">Por favor preencha todos os campos</strong>
+            <?php
+            }
+        }
+        
     ?>
     <h1><?php echo $detalhesDoPost['titulo']; ?></h1>
     Criado em: <?php echo date('d/m/Y H:i:s', strtotime($detalhesDoPost['criado'])); ?>
@@ -39,6 +62,7 @@
             <?php echo $comentario['nome']; ?> disse:
             <br />
             <?php echo $comentario['comentario']; ?>
+            <hr>
         <?php endforeach; ?>
     <?php else : ?>
         Ainda não existem comentários
