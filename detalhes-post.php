@@ -47,6 +47,24 @@
     <br />
     <br />
     Deixe seu comentário:
-    <br />
+    <br /><br />
+    
+    <form method="post">
+        <label>Nome</label>
+        <br />
+        <input type="text" name="nome">
+        <br /><br />
+        <label>Email</label>
+        <br />
+        <input type="text" name="email">
+        <br /><br />
+        <label>Seu comentário</label>
+        <br />
+        <textarea name="comentario" cols="30" rows="5"></textarea>
+        <br /><br />
+        <input type="submit" value="Enviar comentário">
+        <br />
+        * Todos os campos são de preenchimento obrigatórios
+    </form>
 
 <?php include './templates/rodape.php'; ?>
