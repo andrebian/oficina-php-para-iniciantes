@@ -1,3 +1,9 @@
-<?php
-
-echo 'Bem vindo(a)! Esta é a oficina <strong>PHP na prática</strong>';
+<html>
+    <head>
+        <title>PHP na prática - Blog</title>
+    </head>
+    
+    <body>
+        Aqui será disposto o conteúdo do blog
+    </body>
+</html>
