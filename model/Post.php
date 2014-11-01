@@ -1,6 +1,6 @@
 <?php
 
-require dirname(__DIR__) . '/config/conexao-db.php';
+require_once dirname(__DIR__) . '/config/conexao-db.php';
 
 class Post
 {
