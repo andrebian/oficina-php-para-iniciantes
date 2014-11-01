@@ -74,6 +74,11 @@ class Post
         return '/blog/detalhes-post.php?id=' . $this->id;
     }
     
+    public function linkRemover()
+    {
+        return '/blog/remover-post.php?id=' . $this->id;
+    }
+    
     public function setId($id)
     {
         $this->id = $id;
@@ -100,6 +105,23 @@ class Post
         }
         
         return $detalhesDoPost;
+    }
+    
+    public function deleta()
+    {
+        $removido = false;
+        
+        if( $this->id > 0 ) {
+            abreConexao();
+            
+            mysql_query("DELETE FROM posts WHERE id=" . $this->id);
+            if( mysql_affected_rows() && !mysql_error() ) {
+                $removido = true;
+            }
+            fechaConexao();
+        }
+        
+        return $removido;
     }
     
 }
