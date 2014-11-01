@@ -7,7 +7,7 @@ class Post
     
     private $id = 0;
     
-    public function salva($titulo, $conteudo, $id = null)
+    public function salva($titulo, $conteudo, $id = 0)
     {
         abreConexao();
         
@@ -18,7 +18,7 @@ class Post
         $sql = "INSERT INTO posts (titulo, conteudo, criado, atualizado) VALUES ";
         $sql .= "('{$titulo}', '{$conteudo}', '{$criado}', '{$atualizado}')";
         
-        if( !empty($id) && is_int($id) ) {
+        if( $id > 0 ) {
             $sql = "UPDATE posts SET titulo='{$titulo}', conteudo='{$conteudo}', ";
             $sql .= "atualizado='{$atualizado}' WHERE id={$id}";
         }
@@ -66,8 +66,11 @@ class Post
         return $resumo;
     }
     
-    public function obterLink()
+    public function obterLink($editar = false)
     {
+        if( $editar ) {
+            return '/blog/cadastrar-post.php?id=' . $this->id;
+        }
         return '/blog/detalhes-post.php?id=' . $this->id;
     }
     

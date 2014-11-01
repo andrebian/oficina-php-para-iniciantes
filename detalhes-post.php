@@ -21,5 +21,6 @@
     <br /><br />
     <?php echo $detalhesDoPost['conteudo']; ?>
     <br /><br />
+    <a href="<?php echo $postModel->obterLink(true); ?>">Editar</a>
 
 <?php include './templates/rodape.php'; ?>
