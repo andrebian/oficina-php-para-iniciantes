@@ -8,6 +8,9 @@ class Post
     {
         abreConexao();
         
+        $titulo = utf8_decode($titulo);
+        $conteudo = utf8_decode($conteudo);
+        
         $registroSalvo = false;
         $criado = date('Y-m-d H:i:s');
         $atualizado = $criado;
