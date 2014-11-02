@@ -51,4 +51,18 @@ class Comment
         return false;
     }
     
+    public function quantidadeComentarios() 
+    {
+        $total = 0;
+        $sql = "SELECT COUNT(id) AS total FROM comentarios WHERE post_id=" . $this->postId;
+        $res = mysql_query($sql);
+        
+        if(mysql_affected_rows() && !mysql_error()) {
+            $resultado = mysql_fetch_assoc($res);
+            $total = (int) $resultado['total'];
+        }
+        
+        return $total;
+    }
+    
 }
