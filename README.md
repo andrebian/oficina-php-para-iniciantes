@@ -4,7 +4,9 @@ A oficina irá abordar PHP na prática com o foco em iniciantes na linguagem, de
 
 
 DATA: Terça- Feira ( 04/11/2014 )
+
 HORÁRIO: 17:50h - 20:20h
+
 LOCAL: UTFPR - Centro Sala B-107, Curitiba - PR
 
 Com [Andre Cardoso](https://github.com/andrebian/) e [Jeam Martins Alves](https://github.com/jeanmalves) 
@@ -17,4 +19,3 @@ Crie um diretório chamado `blog`em seu webroot (ex: no Debian-like: /var/www/bl
 
 Crie um banco de dados chamado `blog` e importe o arquivo banco-de-dados/blog.sql para o mesmo.
 
- 
